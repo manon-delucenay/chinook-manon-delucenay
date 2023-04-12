@@ -1,0 +1,10 @@
+{%load static%}
+{% if albums%}
+    <ul>
+    {% for album in albums%}
+        <li><a href="/album/{{album.id}}/">{{album.name}}</a></li>
+    {%endfor%}
+    </ul>
+{%else%}
+    <p>No albums. </p>
+{%endif%}
