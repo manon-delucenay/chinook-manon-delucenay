@@ -13,4 +13,4 @@ def details(request, album_id):
     album = get_object_or_404(Album, id=album_id)
     tracks=Track.objects.filter(album=album_id)
     artist=album.artist.name
-    return render(request, {"album": album.title},{"tracks":tracks}, {"artist":artist})
+    return render(request, "disks/details.html",{"album": album.title},{"tracks":tracks}, {"artist":artist})
