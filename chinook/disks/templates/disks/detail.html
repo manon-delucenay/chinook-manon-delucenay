@@ -1,0 +1,9 @@
+{%load static%}
+<h1>{{album}}</h1>
+<p>Artist: {{artist}}</p>
+<ul>
+{% for track in tracks%}
+    <od>{{track.name}}</od>
+    <p>{{track.miliseconds*6000}}min, ${{track.unitPrice}}</p>
+{%endfor%}
+</ul>

@@ -11,4 +11,6 @@ def index(request):
 
 def details(request, album_id):
     album = get_object_or_404(Album, id=album_id)
-    return render(request, "disks/details.html", {"album": album})
+    tracks=Track.objects.filter(album=album_id)
+    artist=album.artist.name
+    return render(request, {"album": album.title},{"tracks":tracks}, {"artist":artist})
