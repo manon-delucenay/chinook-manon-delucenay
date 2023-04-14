@@ -20,3 +20,6 @@ class Track(models.Model):
     bytes = models.IntegerField()
     unitPrice = models.DecimalField(max_digits=5, decimal_places=2)
     album = models.ForeignKey(Album, on_delete=models.CASCADE)
+    
+    def duration(self):
+        return round(self.milliseconds/60000,2)
