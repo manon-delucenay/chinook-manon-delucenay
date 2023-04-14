@@ -18,11 +18,15 @@ def details(request, album_id):
 
 
 def search_albums(request):
-    if request.method == "GET":
-        form = AlbumSearch()
-    elif request.method == "POST":
-        obj = get_object_or_404()
-        form = AlbumSearch(request.POST)
-        if form.is_valid():
-            return  # redirect to url with searched albums
-    return render(request, "html", {"forms": form})  # insérer à l'index ??
+    if request.method == "POST":
+        search=AlbumSearch(request.POST)
+        if search.is_valid():
+            title_search=search.cleaned_data()
+            albums = Album.objects.filter(title__unaccent__icontains=title_search)
+        else : albums = get_object_or_404(Album)
+    else : 
+        search=AlbumSearch()
+        albums = get_object_or_404(Album)
+    return render(request, "index.html", {"album": albums, "form":search})  # insérer à l'index ??
+
+
